@@ -1,0 +1,44 @@
+package Mile1;
+
+public class StudentReport {
+
+    public String findGrades(Student studentObject) {
+        int[] marks = studentObject.getMarks();
+
+        // Check if any mark is less than 35
+        for (int mark : marks) {
+            if (mark < 35) {
+                return "F";
+            }
+        }
+
+        // Calculate total sum of marks
+        int sum = 0;
+        for (int mark : marks) {
+            sum += mark;
+        }
+
+        // Grade assignment based on sum
+        if (sum < 150) {
+            return "C";
+        } else if (sum < 200) {
+            return "B";
+        } else if (sum < 250) {
+            return "A";
+        } else {
+            return "A+";
+        }
+    }
+
+    public String validate(Student s) throws NullNameException, NullMarksArrayException, NullStudentObjectException {
+        if (s == null) {
+            throw new NullStudentObjectException();
+        } else if (s.getName() == null) {
+            throw new NullNameException();
+        } else if (s.getMarks() == null) {
+            throw new NullMarksArrayException();
+        }
+
+        return "VALID";
+    }
+}
